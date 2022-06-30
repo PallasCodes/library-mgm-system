@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import {
   CreateProductInput,
+  DeleteProductInput,
   UpdateProductInput,
 } from "../schema/product.schema";
 import {
@@ -62,7 +63,7 @@ export async function getProductHandler(
 }
 
 export async function deleteProductHandler(
-  req: Request<UpdateProductInput["params"]>,
+  req: Request<DeleteProductInput["params"]>,
   res: Response
 ) {
   const userId = res.locals.user._id;
@@ -77,6 +78,8 @@ export async function deleteProductHandler(
   if (String(product.user) !== userId) {
     return res.sendStatus(403);
   }
+
+  await deleteProduct({ productId });
 
   return res.sendStatus(200)
 }

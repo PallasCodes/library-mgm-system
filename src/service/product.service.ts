@@ -7,7 +7,9 @@ import {
 import ProductModel, { ProductDocument } from "../models/product.model";
 
 export async function createProduct(
-  input: DocumentDefinition<Omit<ProductDocument, "createdAt" | "updatedAt">>
+  input: DocumentDefinition<
+    Omit<ProductDocument, "createdAt" | "updatedAt" | "productId">
+  >
 ) {
   return ProductModel.create(input);
 }
@@ -24,9 +26,9 @@ export async function findAndUpdateProduct(
   update: UpdateQuery<ProductDocument>,
   options: QueryOptions
 ) {
-  return ProductModel.findOneAndUpdate(query, update, options)
+  return ProductModel.findOneAndUpdate(query, update, options);
 }
 
 export async function deleteProduct(query: FilterQuery<ProductDocument>) {
-  return ProductModel.deleteOne(query)
+  return ProductModel.deleteOne(query);
 }
