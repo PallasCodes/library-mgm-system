@@ -21,6 +21,9 @@ import {
   getProductHandler,
   deleteProductHandler
 } from "./controller/product.controller";
+import validate from "./middleware/validateResource";
+import { createBookSchema } from "./schema/book.schema";
+import { createBookHandler, getBooksHandler } from "./controller/book.controller";
 
 function routes(app: Express) {
   app.get("/healthcheck", (req: Request, res: Response) => res.sendStatus(200));
@@ -60,6 +63,10 @@ function routes(app: Express) {
     [requireUser, validateResource(deleteProductSchema)],
     deleteProductHandler
   );
+
+  app.post("/api/books", validateResource(createBookSchema), createBookHandler)
+
+  app.get("/api/books", getBooksHandler)
 }
 
 export default routes;

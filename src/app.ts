@@ -9,6 +9,5 @@ const app = createServer()
 
 app.listen(port, async () => {
     logger.info(`App is running at http://localhost:${port}`)
-
     await connect()
 })

@@ -46,7 +46,7 @@ export async function updateProductHandler(
     new: true,
   });
 
-  return res.send(updatedProduct)
+  return res.send(updatedProduct);
 }
 
 export async function getProductHandler(
@@ -55,11 +55,11 @@ export async function getProductHandler(
 ) {
   const productId = req.params.productId;
 
-  const product = await findProduct({ productId })
+  const product = await findProduct({ productId });
 
-  if (!product) return res.sendStatus(404)
+  if (!product) return res.sendStatus(404);
 
-  return res.send(product)
+  return res.send(product);
 }
 
 export async function deleteProductHandler(
@@ -81,5 +81,5 @@ export async function deleteProductHandler(
 
   await deleteProduct({ productId });
 
-  return res.sendStatus(200)
+  return res.sendStatus(200);
 }
